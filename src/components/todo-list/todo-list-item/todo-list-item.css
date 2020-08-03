@@ -1,0 +1,17 @@
+.todo-list-item {
+	font-size: 1.5rem;
+}
+
+.todo-list-item-icon {
+	width: 20px;
+	height: 20px;
+}
+
+.done {
+	text-decoration: line-through;
+}
+
+.important {
+	color: green;
+	font-weight: bold;
+}
