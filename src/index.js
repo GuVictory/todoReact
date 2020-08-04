@@ -38,6 +38,7 @@ class App extends Component {
 		],
 		currentFilter: 0,
 		doneCount: 0,
+		searchText: '',
 	};
 
 	createTodoItem = (label) => {
@@ -91,19 +92,28 @@ class App extends Component {
 		});
 	};
 
-	filterData = (filterId) => {
+	filteredData = (filterId) => {
+		let resArr = [...this.state.todoData];
+		if (this.state.searchText !== '') {
+			resArr = resArr.filter((el) => el.label.startsWith(this.state.searchText));
+		}
 		switch (filterId) {
 			case 1:
-				return this.state.todoData.filter((el) => !el.done);
+				return resArr.filter((el) => el.important);
 			case 2:
-				return this.state.todoData.filter((el) => el.done);
+				return resArr.filter((el) => el.done);
 			default:
-				return this.state.todoData;
+				return resArr;
 		}
 	};
 
 	onFilterChange = (filterId) => {
 		this.setState({ currentFilter: filterId });
+	};
+
+	onSearchChange = (text) => {
+		this.setState({ searchText: text });
+		console.log(text);
 	};
 
 	render() {
@@ -113,9 +123,9 @@ class App extends Component {
 					done={this.state.doneCount}
 					todo={this.state.todoData.length - this.state.doneCount}
 				/>
-				<SearchPanel onFilterChange={this.onFilterChange} />
+				<SearchPanel onFilterChange={this.onFilterChange} onSearchChange={this.onSearchChange} />
 				<TodoList
-					todos={this.filterData(this.state.currentFilter)}
+					todos={this.filteredData(this.state.currentFilter)}
 					onDeleted={(id) => {
 						this.deleteItem(id);
 					}}

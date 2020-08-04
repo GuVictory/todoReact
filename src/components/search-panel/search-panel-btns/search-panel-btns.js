@@ -26,7 +26,7 @@ export default class SearchFilterBtns extends Component {
 						this.props.onFilterChange(1);
 					}}
 				>
-					Active
+					Important
 				</button>
 				<button
 					type="button"
