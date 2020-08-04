@@ -7,21 +7,8 @@ export default class TodoListItem extends Component {
 		important: this.props.important,
 	};
 
-	onLableClick = () => {
-		this.setState(({ done }) => {
-			return { done: !done };
-		});
-	};
-
-	onImportantClick = () => {
-		this.setState(({ important }) => {
-			return { important: !important };
-		});
-	};
-
 	render() {
-		const { label, onDeleted } = this.props;
-		const { done, important } = this.state;
+		const { label, done, important, onDeleted, onToggleImportant, onToggleDone } = this.props;
 
 		let classNames = 'todo-list-item d-flex-inline';
 		classNames += done ? ' done' : '';
@@ -29,14 +16,14 @@ export default class TodoListItem extends Component {
 
 		return (
 			<div className="d-flex align-items-center justify-content-between">
-				<span className={classNames} onClick={this.onLableClick}>
+				<span className={classNames} onClick={onToggleDone}>
 					{label}
 				</span>
 				<div className="d-flex-inline">
 					<button type="button" className="btn btn-outline-danger mr-2" onClick={onDeleted}>
 						<i className="fa fa-trash-o todo-list-item-icon" />
 					</button>
-					<button type="button" className="btn btn-outline-success" onClick={this.onImportantClick}>
+					<button type="button" className="btn btn-outline-success" onClick={onToggleImportant}>
 						<i className="fa fa-exclamation todo-list-item-icon" />
 					</button>
 				</div>

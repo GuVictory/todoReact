@@ -1,0 +1,13 @@
+.add-item {
+	width: 80%;
+	min-width: 560px;
+	max-width: 600px;
+}
+
+.form-input {
+	font-size: 1.5rem;
+}
+
+.form-btn {
+	min-width: 100px;
+}

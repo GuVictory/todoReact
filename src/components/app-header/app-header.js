@@ -2,11 +2,12 @@ import React from 'react';
 import './app-header.css';
 import TodosInfo from './todos-info';
 
-const AppHeader = () => {
+const AppHeader = (props) => {
+	const { done, todo } = props;
 	return (
 		<div className="d-flex align-items-end justify-content-between header">
 			<span className="display-4 d-inline-flex">Todo List</span>
-			<TodosInfo todo={12} done={3} />
+			<TodosInfo todo={todo} done={done} />
 		</div>
 	);
 };

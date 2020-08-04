@@ -7,7 +7,7 @@ const SearchPanel = () => {
 		fontSize: '1.5em',
 	};
 	return (
-		<div className="d-flex justify-content-between search-panel py-3">
+		<div className="d-flex justify-content-between search-panel py-2">
 			<input placeholder="search" style={searchStyle} className="form-control" />
 			<SearchFilterBtns />
 		</div>
