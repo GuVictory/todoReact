@@ -36,6 +36,7 @@ class App extends Component {
 				id: 4,
 			},
 		],
+		currentFilter: 0,
 		doneCount: 0,
 	};
 
@@ -90,18 +91,31 @@ class App extends Component {
 		});
 	};
 
-	render() {
-		const { todoData } = this.state;
+	filterData = (filterId) => {
+		switch (filterId) {
+			case 1:
+				return this.state.todoData.filter((el) => !el.done);
+			case 2:
+				return this.state.todoData.filter((el) => el.done);
+			default:
+				return this.state.todoData;
+		}
+	};
 
+	onFilterChange = (filterId) => {
+		this.setState({ currentFilter: filterId });
+	};
+
+	render() {
 		return (
 			<div className="d-flex flex-column align-items-center">
 				<AppHeader
 					done={this.state.doneCount}
 					todo={this.state.todoData.length - this.state.doneCount}
 				/>
-				<SearchPanel />
+				<SearchPanel onFilterChange={this.onFilterChange} />
 				<TodoList
-					todos={todoData}
+					todos={this.filterData(this.state.currentFilter)}
 					onDeleted={(id) => {
 						this.deleteItem(id);
 					}}

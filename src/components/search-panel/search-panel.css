@@ -3,3 +3,7 @@
 	min-width: 560px;
 	max-width: 600px;
 }
+
+.search-panel-input {
+	font-size: 1.5rem;
+}
